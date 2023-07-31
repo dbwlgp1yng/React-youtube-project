@@ -4,7 +4,7 @@ export default function Videos() {
     
     return (
         <div>
-            핫트렌드 비디오 목록
+            videos 핫트렌드 비디오 목록
         </div>
     );
 }
