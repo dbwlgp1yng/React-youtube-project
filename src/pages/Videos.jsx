@@ -6,7 +6,6 @@ import VideoCard from "../components/VideoCard";
 import Youtube from "../api/youtube";
 import { useYoutubeApi } from '../context/YoutubeApiContext';
 
-// const API_KEY = 'AIzaSyBniLqBKkViniKMb86Zu6vyvsJY4GY81hE';
 
 export default function Videos() {
   const { keyword } = useParams();
@@ -16,8 +15,6 @@ export default function Videos() {
     error,
     data: videos,
   } = useQuery(['videos', keyword], () => youtube.search(keyword));
-
-
   return (
     <>
       <div>Videos {keyword ? `🔍${keyword}` : "🔥"}</div>
