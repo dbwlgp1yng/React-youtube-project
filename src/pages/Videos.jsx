@@ -1,11 +1,32 @@
-import React from 'react';
+import React from "react";
+import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import VideoCard from "../components/VideoCard";
 
 export default function Videos() {
-    
-    return (
-        <div>
-            videos 핫트렌드 비디오 목록
-        </div>
-    );
-}
+  const { keyword } = useParams();
+  const {
+    isLoading,
+    error,
+    data: videos,
+  } = useQuery(['videos', keyword], async () => {
+      return fetch(`/videos/${keyword ? "search" : "popular"}.json`)
+        .then((res) => res.json())
+        .then((data) => data.items); // data의 items를 반환(json 파일에서)
+    });
 
+  return (
+    <>
+      <div>Videos {keyword ? `🔍${keyword}` : "🔥"}</div>
+      {isLoading && <p>Loading...</p>}
+      {error && <p>Someting is wrong ❌</p>}
+      {videos && (
+        <ul>
+          {videos.map((video) => (
+            <VideoCard key={video.id} video={video} />
+          ))}
+        </ul>
+      )}
+    </>
+  );
+}
