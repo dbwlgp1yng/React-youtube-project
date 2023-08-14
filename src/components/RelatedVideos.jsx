@@ -16,9 +16,9 @@ export default function RelatedVideos({ id }) {
       {isLoading && <p>Loading...</p>}
       {error && <p>Someting is wrong ❌</p>}
       {videos && (
-        <ul>
+        <ul className="gap-y-4">
           {videos.map((video) => (
-            <VideoCard key={video.id} video={video} />
+            <VideoCard key={video.id} video={video} type='list' />
           ))}
         </ul>
       )}
