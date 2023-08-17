@@ -20,7 +20,7 @@ export default class Youtube {
           part: "snippet",
           maxResults: 25,
           type: "video",
-          // relatedToVideoId: id,
+          channelId: id,
         },
       })
       .then((res) =>
@@ -51,6 +51,7 @@ export default class Youtube {
           part: "snippet",
           chart: "mostPopular",
           maxResults: 25,
+          regionCode: "KR"
         },
       })
       .then((res) => res.data.items);
